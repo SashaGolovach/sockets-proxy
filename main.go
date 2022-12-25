@@ -6,15 +6,14 @@ import (
 	"net"
 )
 
-const ADDRESS = "localhost:9999"
-
 func main() {
 	portPtr := flag.String("port", "3309", "database port")
 	hostPtr := flag.String("host", "localhost", "database host")
 	typePtr := flag.String("type", "tcp", "type of connection, tcp or udp")
+	localPortPtr := flag.String("local", "9999", "local port")
 	flag.Parse()
 
-	listener, err := net.Listen(*typePtr, ADDRESS)
+	listener, err := net.Listen(*typePtr, "localhost:"+*localPortPtr)
 
 	if err != nil {
 		fmt.Println(err)
