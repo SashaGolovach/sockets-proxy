@@ -12,6 +12,7 @@ func main() {
 	portPtr := flag.String("port", "3309", "database port")
 	hostPtr := flag.String("host", "localhost", "database host")
 	typePtr := flag.String("type", "tcp", "type of connection, tcp or udp")
+	flag.Parse()
 
 	listener, err := net.Listen(*typePtr, ADDRESS)
 
@@ -21,6 +22,7 @@ func main() {
 	}
 
 	fmt.Println("Start listening to client connections, setting up remote connection...")
+	fmt.Println("Current params: host => " + *hostPtr + " port=> " + *portPtr)
 
 	for {
 		remote, _ := net.Dial(*typePtr, *hostPtr+":"+*portPtr)
